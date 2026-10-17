@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#10151d" />
+    <link rel="icon" href="data:," />
+    <title>RigLab — Browser Character Studio</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="RigLab home"><span class="brand-mark">R</span><span>RigLab</span></a>
+      <div class="topbar-meta"><span class="live-dot" aria-hidden="true"></span><span>Browser character studio</span><span class="version">PREVIEW RIG</span></div>
+    </header>
+
+    <main class="app-shell">
+      <aside class="panel hierarchy-panel" aria-label="Character hierarchy">
+        <div class="panel-heading"><span class="eyebrow">CHARACTER</span><span class="panel-badge">10 JOINTS</span></div>
+        <h1>Animation rig</h1>
+        <p class="muted">Choose a joint to edit its local rotation.</p>
+        <div class="joint-list" role="group" aria-label="Select joint">
+          <button class="joint-row selected" type="button" data-joint="shoulderL" aria-pressed="true"><span class="joint-icon">↙</span><span>Left shoulder</span><span class="joint-value" data-value-for="shoulderL">0°</span></button>
+          <button class="joint-row" type="button" data-joint="elbowL" aria-pressed="false"><span class="joint-icon">⌁</span><span>Left elbow</span><span class="joint-value" data-value-for="elbowL">0°</span></button>
+          <button class="joint-row" type="button" data-joint="shoulderR" aria-pressed="false"><span class="joint-icon">↘</span><span>Right shoulder</span><span class="joint-value" data-value-for="shoulderR">0°</span></button>
+          <button class="joint-row" type="button" data-joint="elbowR" aria-pressed="false"><span class="joint-icon">⌁</span><span>Right elbow</span><span class="joint-value" data-value-for="elbowR">0°</span></button>
+          <button class="joint-row" type="button" data-joint="hipL" aria-pressed="false"><span class="joint-icon">◒</span><span>Left hip</span><span class="joint-value" data-value-for="hipL">0°</span></button>
+          <button class="joint-row" type="button" data-joint="kneeL" aria-pressed="false"><span class="joint-icon">⌁</span><span>Left knee</span><span class="joint-value" data-value-for="kneeL">0°</span></button>
+          <button class="joint-row" type="button" data-joint="hipR" aria-pressed="false"><span class="joint-icon">◓</span><span>Right hip</span><span class="joint-value" data-value-for="hipR">0°</span></button>
+          <button class="joint-row" type="button" data-joint="kneeR" aria-pressed="false"><span class="joint-icon">⌁</span><span>Right knee</span><span class="joint-value" data-value-for="kneeR">0°</span></button>
+          <button class="joint-row" type="button" data-joint="torso" aria-pressed="false"><span class="joint-icon">◇</span><span>Torso</span><span class="joint-value" data-value-for="torso">0°</span></button>
+          <button class="joint-row" type="button" data-joint="head" aria-pressed="false"><span class="joint-icon">○</span><span>Head</span><span class="joint-value" data-value-for="head">0°</span></button>
+        </div>
+        <div class="tip"><span>TIP</span> Keyframes store the current pose at the selected frame.</div>
+      </aside>
+
+      <section class="center-column" aria-label="Character viewport and timeline">
+        <div class="viewport-card">
+          <div class="viewport-toolbar"><div><span class="eyebrow">3D VIEWPORT</span><span class="viewport-title">Procedural character</span></div><span class="view-chip">Y-UP · PERSPECTIVE</span></div>
+          <div id="viewport" class="viewport" data-testid="renderer-host">
+            <div id="renderer-loading" class="renderer-status" data-testid="renderer-loading" role="status">Starting 3D renderer…</div>
+            <div id="renderer-ready" class="renderer-ready" data-testid="renderer-ready" role="status" hidden><span class="live-dot" aria-hidden="true"></span>3D renderer ready</div>
+            <div id="renderer-error" class="renderer-error" data-testid="renderer-error" role="alert" hidden></div>
+            <div class="viewport-help">Drag to orbit · scroll to zoom</div>
+          </div>
+          <div class="viewport-footer"><span><i class="legend-dot mint"></i>Selected joint controls the rig</span><span id="frame-readout" data-testid="frame-readout">Frame 0 / 60</span></div>
+        </div>
+
+        <section class="panel timeline-panel" aria-label="Animation timeline">
+          <div class="timeline-heading"><div><span class="eyebrow">ANIMATION</span><h2>Timeline</h2></div><div class="timeline-actions"><button id="walk-preset" class="button secondary" type="button">Create walk cycle</button><button id="add-keyframe" class="button primary" data-testid="add-keyframe" type="button">＋ Keyframe</button></div></div>
+          <div class="playback-row">
+            <button id="play-toggle" class="play-button" type="button" aria-label="Play animation">▶ <span>Play</span></button>
+            <button id="previous-frame" class="icon-button" type="button" aria-label="Previous frame">‹</button>
+            <button id="next-frame" class="icon-button" type="button" aria-label="Next frame">›</button>
+            <span id="play-state" data-testid="play-state" class="play-state">Paused</span>
+            <div class="timeline-range"><label for="timeline-frame">Frame</label><input id="timeline-frame" data-testid="timeline-frame" type="range" min="0" max="60" step="1" value="0" /></div>
+            <span id="key-count" data-testid="key-count" class="key-count">0 keyframes</span>
+          </div>
+          <div id="keyframe-markers" class="keyframe-markers" aria-label="Keyframes"><span class="muted">No keys yet — set a pose and add a keyframe.</span></div>
+          <div class="timeline-scale"><span>00</span><span>15</span><span>30</span><span>45</span><span>60</span></div>
+          <div class="timeline-bottom">
+            <div class="inspector"><label for="joint-angle"><span id="selected-joint-label">Left shoulder</span> rotation</label><div class="angle-control"><input id="joint-angle" data-testid="joint-angle" type="range" min="-90" max="90" step="1" value="0" /><output id="angle-readout" for="joint-angle">0°</output></div></div>
+            <div class="data-actions"><button id="export-json" class="button secondary" type="button">Export JSON</button><label class="button secondary import-button" for="import-file">Import JSON</label><input id="import-file" type="file" accept="application/json,.json" /></div>
+          </div>
+          <p id="editor-status" class="editor-status" data-testid="editor-status" role="status" aria-live="polite">Ready. Select a joint or create a walk cycle.</p>
+        </section>
+      </section>
+    </main>
+
+    <footer class="page-footer"><span>RigLab is a procedural preview rig, not a skinned production character.</span><span>Local-first · no account required</span></footer>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
