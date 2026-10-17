@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 4173 --strictPort",
+    "build": "vite build",
     "test": "playwright test",
     "test:e2e": "playwright test",
     "check": "node --check src/main.js && node --check playwright.config.mjs"
