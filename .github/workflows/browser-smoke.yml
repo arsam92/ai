@@ -29,6 +29,8 @@ jobs:
         run: npm install
       - name: Install Chromium and OS dependencies
         run: npx playwright install --with-deps chromium
+      - name: Check dependency security audit
+        run: npm audit --audit-level=high
       - name: Check JavaScript syntax
         run: npm run check
       - name: Run actual browser tests
