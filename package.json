@@ -1,0 +1,19 @@
+{
+  "name": "riglab-browser-character-studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 4173 --strictPort",
+    "test": "playwright test",
+    "test:e2e": "playwright test",
+    "check": "node --check src/main.js && node --check playwright.config.mjs"
+  },
+  "dependencies": {
+    "three": "0.180.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.55.0",
+    "vite": "7.1.5"
+  }
+}
