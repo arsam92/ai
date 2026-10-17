@@ -65,9 +65,9 @@ test('edits a joint, adds a keyframe, and exports valid animation JSON', async (
   await expect(page.getByTestId('renderer-ready')).toBeVisible({ timeout: 20_000 });
 
   await page.getByRole('button', { name: /Left shoulder/ }).click();
-  await page.getByTestId('joint-angle').fill('28');
+  await page.getByTestId('joint-angle').evaluate((input) => { input.value = '28'; input.dispatchEvent(new Event('input', { bubbles: true })); });
   await expect(page.locator('[data-value-for="shoulderL"]')).toHaveText('28°');
-  await page.getByTestId('timeline-frame').fill('12');
+  await page.getByTestId('timeline-frame').evaluate((input) => { input.value = '12'; input.dispatchEvent(new Event('input', { bubbles: true })); });
   await page.getByTestId('add-keyframe').click();
   await expect(page.getByTestId('key-count')).toHaveText('1 keyframe');
   await expect(page.getByTestId('editor-status')).toContainText('Added keyframe at frame 12');
@@ -94,7 +94,7 @@ test('creates a walk-cycle preset and supports play/pause and scrubbing', async 
   await page.waitForTimeout(180);
   await page.getByRole('button', { name: 'Pause animation' }).click();
   await expect(page.getByTestId('play-state')).toHaveText('Paused');
-  await page.getByTestId('timeline-frame').fill('30');
+  await page.getByTestId('timeline-frame').evaluate((input) => { input.value = '30'; input.dispatchEvent(new Event('input', { bubbles: true })); });
   await expect(page.getByTestId('frame-readout')).toHaveText('Frame 30 / 60');
 });
 
