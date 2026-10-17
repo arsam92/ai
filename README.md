@@ -11,7 +11,7 @@ A small, real browser-based character-animation project used to validate the HTM
 
 ## Live demo
 
-The app is configured for GitHub Pages at <https://arsam92.github.io/ai/>. The link becomes available after the first Pages deployment completes successfully.
+The app is configured for GitHub Pages at <https://arsam92.github.io/ai/>. The link becomes available after the first Pages deployment completes successfully. If the deployment reports that Pages is not enabled, open [Settings → Pages](https://github.com/arsam92/ai/settings/pages), choose **GitHub Actions** under **Build and deployment → Source**, then rerun the Pages workflow from the Actions tab.
 
 ## Run locally
 
