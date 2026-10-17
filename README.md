@@ -9,6 +9,10 @@ A small, real browser-based character-animation project used to validate the HTM
 - Playwright tests that run Chromium and collect console errors, uncaught page exceptions, failed requests, and HTTP responses >= 400.
 - A GitHub Actions workflow that runs the browser test suite on pushes and pull requests, then uploads Playwright reports.
 
+## Live demo
+
+The app is configured for GitHub Pages at <https://arsam92.github.io/ai/>. The link becomes available after the first Pages deployment completes successfully.
+
 ## Run locally
 
 Requires Node.js 20 or newer.
@@ -16,7 +20,9 @@ Requires Node.js 20 or newer.
 ```bash
 npm install
 npx playwright install chromium
+npm run check
 npm test
+npm run build
 npm run dev
 ```
 
